@@ -1,0 +1,1582 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Ambient Weather</title>
+    <link href="https://fonts.googleapis.com/css?family=Ubuntu:300,400,500,700" rel="stylesheet">
+    <link rel="stylesheet" href="aerisweather.css">
+    <script async="" src="https://www.google-analytics.com/analytics.js"></script>
+    <script src="https://api.tiles.mapbox.com/mapbox-gl-js/v1.12.0/mapbox-gl.js"></script>
+    <link href="https://api.tiles.mapbox.com/mapbox-gl-js/v1.12.0/mapbox-gl.css" rel="stylesheet">
+    <script src="https://cdn.aerisapi.com/sdk/js/latest/aerisweather.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.aerisapi.com/sdk/js/latest/aerisweather.css">
+
+    <script type="text/javascript"
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAzKKOVP03RekNzRmZjc4aP2cv-MDRRl0U&amp;libraries=places">
+    </script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="theme-color" content="#FFFFFF">
+    <link rel="manifest" href="/manifest.json">
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="icon" sizes="16x16 32x32 64x64" href="/favicon.ico">
+    <link rel="icon" type="image/png" sizes="196x196" href="/favicon-192.png">
+    <link rel="icon" type="image/png" sizes="160x160" href="/favicon-160.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96.png">
+    <link rel="icon" type="image/png" sizes="64x64" href="/favicon-64.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png">
+    <link rel="apple-touch-icon" href="/favicon-57.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/favicon-114.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/favicon-72.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/favicon-144.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/favicon-60.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/favicon-120.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/favicon-76.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/favicon-152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/favicon-180.png">
+    <meta name="msapplication-TileColor" content="#FFFFFF">
+    <meta name="msapplication-TileImage" content="/favicon-144.png">
+    <meta name="msapplication-config" content="/browserconfig.xml">
+    <meta name="description"
+        content="Your Personal Weather Data Dashboard. Stream live data from your weather station to the internet.">
+    <link rel="canonical" href="https://ambientweather.net/">
+    <meta property="og:locale" content="en_US">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Ambient Weather Network">
+    <meta property="og:description"
+        content="Your Personal Weather Data Dashboard. Stream live data from your weather station to the internet.">
+    <meta property="og:url" content="https://ambientweather.net/">
+    <meta property="og:site_name" content="Ambient Weather Network">
+    <meta property="og:image"
+        content="https://help.ambientweather.net/wp-content/themes/stockholm-child/images/LANDING_IMAGE@2x.jpg">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:description"
+        content="Your Personal Weather Data Dashboard. Stream live data from your weather station to the internet.">
+    <meta name="twitter:title" content="Ambient Weather Network">
+
+
+    </style>
+    <script type="text/javascript" charset="UTF-8" src="https://maps.googleapis.com/maps-api-v3/api/js/44/2/common.js">
+    </script>
+    <script type="text/javascript" charset="UTF-8" src="https://maps.googleapis.com/maps-api-v3/api/js/44/2/util.js">
+    </script>
+    <script charset="utf-8" src="https://cdn.aerisapi.com/sdk/js/latest/aerisweather.maps.common.js"></script>
+    <script charset="utf-8" src="https://cdn.aerisapi.com/sdk/js/latest/aerisweather.maps.js"></script>
+</head>
+
+<body>
+
+    <body class="ptr--top" cz-shortcut-listen="true">
+        <script src="https://momentjs.com/downloads/moment.min.js"></script>
+        <script src="https://momentjs.com/downloads/moment-timezone-with-data.min.js"></script>
+        <script src="/main.bundle.6df04d7c9e.js"></script>
+        <div>
+            <div data-reactroot=""
+                class="app dashboard-8af5dd87cc0aa44ce6d7226b2076ab2b dashboard-page w-tablet-max loggedout mobile-address v3">
+                <a tabindex="-1" class="close-menu"></a>
+                <div class="component-public-header">
+                    <div class="wrap"><a class="navbar-brand" href="https://ambientweather.net"><span>Your Personal
+                                Weather Dashboard</span></a>
+                        <div class="buttons"><a class="btn" href="/devices">Add Device</a><a class="btn-primary btn"
+                                href="/">Login</a></div>
+                    </div>
+                </div>
+                <div class="mobile-header"><a tabindex="-1" class="burger"></a><a class="navbar-brand"
+                        href="/dashboard">Home</a></div>
+                <div class="user-nav">
+                    <ul class="nav navbar-nav pull-right simple-nav">
+                        <li><a class="add-device btn btn-default" href="/welcome">Add Device</a></li>
+                        <li><a class="login btn btn-default" href="/signin">Login</a></li>
+                        <li><a class="login btn btn-default mobile-login" href="/welcome">Login</a></li>
+                    </ul>
+                </div>
+                <div class="clearfix loggedout"><a class="loggedout navbar-brand" href="/dashboard">Home</a></div>
+                <div class="component-dashboard-nav">
+                    <div class="wrap"><a class="navbar-brand" href="/dashboard"></a>
+                        <div class="scroll-wrap"><a class="nav account" href="/account">
+                                <div class="user-avatar is-def"></div>
+                            </a><a class="nav dashboard active" href="/dashboard"><i
+                                    class="dashboard"></i><span>Dashboard</span></a><a class="nav devices"
+                                href="/devices"><i class="devices"></i><span>Devices</span></a>
+                            <div><a class="component-protected-link nav alerts"><i
+                                        class="alerts"></i><span>Alerts</span></a><a
+                                    class="component-protected-link nav settings"><i
+                                        class="settings"></i><span>Units</span></a></div>
+                            <div class="nav-btn"><a class="btn btn-primary map" href="/">Weather Map</a></div>
+                        </div><a class="logout" href="/signin"><i class="glyphicon glyphicon-off"></i>
+                            <!-- react-text: 46 --> Login
+                            <!-- /react-text --></a>
+                    </div>
+                </div>
+                <div class="page-container">
+                    <div class="user-dashboard">
+                        <div class="device-dashboard-wrap restrict">
+                            <div class="device">
+                                <div class="dashboard-top expanded">
+                                    <div class="map-with-forecast minimized not-searched"><a class="expand"
+                                            href="/"></a>
+                                        <div class="component-fetches-forecast">
+                                            <div class="component-forecast">
+                                                <div class="wrap">
+                                                    <div class="forecast">
+                                                        <div class="currently"><span
+                                                                class="device-formatted-data-point fdp tempf ">
+                                                                <!-- react-text: 1586 -->
+                                                                <!-- /react-text --><span
+                                                                    class="fdp-val">81.7</span><span
+                                                                    class="suff">°F</span><span
+                                                                    class="after">°</span></span>
+                                                            <!-- react-text: 1590 -->&nbsp;
+                                                            <!-- /react-text --><span>
+                                                                <!-- react-text: 1592 -->
+                                                                <!-- /react-text --></span><span>
+                                                                <!-- react-text: 1594 -->Mostly cloudy throughout the
+                                                                day.
+                                                                <!-- /react-text -->
+                                                                <!-- react-text: 1595 -->
+                                                                <!-- /react-text --></span></div><a class="close"></a><a
+                                                            class="show-24">View 24 hour forecast</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="component-map">
+                                            <div class="map mapboxgl-map awxjs__ia-map" id="map_2235">
+                                                <div class="mapboxgl-canary" style="visibility: hidden;"></div>
+                                                <div
+                                                    class="mapboxgl-canvas-container mapboxgl-interactive mapboxgl-touch-drag-pan mapboxgl-touch-zoom-rotate">
+                                                    <canvas class="mapboxgl-canvas" tabindex="0" aria-label="Map"
+                                                        width="1149" height="339"
+                                                        style="width: 1149px; height: 339px;"></canvas></div>
+                                                <div class="mapboxgl-control-container">
+                                                    <div class="mapboxgl-ctrl-top-left"></div>
+                                                    <div class="mapboxgl-ctrl-top-right"></div>
+                                                    <div class="mapboxgl-ctrl-bottom-left">
+                                                        <div class="mapboxgl-ctrl mapboxgl-ctrl-attrib">
+                                                            <div class="mapboxgl-ctrl-attrib-inner">© Ambient, LLC,
+                                                                2021. All rights reserved. | Forecast by DarkSky.net |
+                                                                <a href="https://help.ambientweather.net/help/legend/"
+                                                                    rel="noopener" target="_blank"
+                                                                    class="map-legend">Map Legend</a> | <a
+                                                                    href="https://www.mapbox.com/about/maps/"
+                                                                    target="_blank">© Mapbox</a> <a
+                                                                    href="http://www.openstreetmap.org/about/"
+                                                                    target="_blank">© OpenStreetMap</a> <a
+                                                                    class="mapbox-improve-map"
+                                                                    href="https://apps.mapbox.com/feedback/?owner=ambientweather&amp;id=ck2cfph860g191co6rtk4jt0y&amp;access_token=pk.eyJ1IjoiYW1iaWVudHdlYXRoZXIiLCJhIjoiY2syY2ZvaTd1MDJ0dzNsbzRzY3F4YWZhMiJ9.a7DVxlk_9Yf9157nrlE_3A"
+                                                                    target="_blank" rel="noopener nofollow">Improve this
+                                                                    map</a></div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="mapboxgl-ctrl-bottom-right">
+                                                        <div class="mapboxgl-ctrl mapboxgl-ctrl-group"><button
+                                                                class="mapboxgl-ctrl-zoom-in" type="button"
+                                                                title="Zoom in" aria-label="Zoom in"><span
+                                                                    class="mapboxgl-ctrl-icon"
+                                                                    aria-hidden="true"></span></button><button
+                                                                class="mapboxgl-ctrl-zoom-out" type="button"
+                                                                title="Zoom out" aria-label="Zoom out"><span
+                                                                    class="mapboxgl-ctrl-icon"
+                                                                    aria-hidden="true"></span></button><button
+                                                                class="mapboxgl-ctrl-compass" type="button"
+                                                                title="Reset bearing to north"
+                                                                aria-label="Reset bearing to north"><span
+                                                                    class="mapboxgl-ctrl-icon" aria-hidden="true"
+                                                                    style="transform: rotate(0deg);"></span></button>
+                                                        </div>
+                                                        <div class="mapboxgl-ctrl" style="display: block;"><a
+                                                                class="mapboxgl-ctrl-logo" target="_blank"
+                                                                rel="noopener nofollow" href="https://www.mapbox.com/"
+                                                                aria-label="Mapbox logo"></a></div>
+                                                    </div>
+                                                </div>
+                                                <div class="awxjs__loader" style="width: 100%; height: 100%;">
+                                                    <svg version="1.1" class="awxjs__filler-loader" width="60"
+                                                        height="60" style="margin-top: -30px; margin-left: -30px;">
+                                                        <circle class="awxjs__fill-path" cx="30" cy="30" r="18"
+                                                            stroke-width="4"></circle>
+                                                    </svg>
+                                                </div>
+                                            </div>
+                                            <div class="layer-btns">
+                                                <div class="btn-wrap"><a title="radar" class="radar">radar</a><a
+                                                        class="play sub"></a><a class="lightning sub"></a></div><a
+                                                    title="temp" class="temp">temp</a><a title="wind"
+                                                    class="wind">wind</a><a
+                                                    class="forecast-btn"><span>24h</span><span>7d</span></a>
+                                            </div>
+                                        </div>
+                                        <div class="component-device-chooser not-searched">
+                                            <div class="spacer"></div>
+                                            <div class="wrap">
+                                                <div class="header-wrap"><a
+                                                        class="component-protected-link favstar"></a><a
+                                                        class="header">Mundi Center</a></div>
+                                            </div>
+                                        </div>
+                                        <div class="buttons-wrap component-min-max-btns">
+                                            <div class="buttons-rounded"><a tabindex="-1" class="exp"
+                                                    title="expand widget"></a><a class="full-screen" href="/">Full
+                                                    Screen</a></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="dashboard-header">
+                                    <div class="tabs"><a class="widgets active"
+                                            href="/dashboard/8af5dd87cc0aa44ce6d7226b2076ab2b/tiles"><span>Tiles</span></a><a
+                                            class="graphs"
+                                            href="/dashboard/8af5dd87cc0aa44ce6d7226b2076ab2b/graphs"><span>Charts
+                                                &amp;&nbsp;Graphs</span></a><a class="social"
+                                            href="/dashboard/8af5dd87cc0aa44ce6d7226b2076ab2b/social"><span
+                                                class="beta">Social</span></a></div>
+                                    <div class="device-info"><a class="component-protected-link favstar"></a>
+                                        <div class="user-avatar is-def"></div>
+                                        <div class="device-label">Mundi Center</div>
+                                    </div>
+                                    <div class="secondary">
+                                        <div class="view-btns"><a class="btn-circle btn map active"></a></div>
+                                    </div>
+                                </div>
+                                <div class="countdown-wrap"><a class="component-protected-link countdown">
+                                        <!-- react-text: 2569 -->an hour ago
+                                        <!-- /react-text -->
+                                        <!-- react-text: 2570 -->&nbsp;&nbsp;
+                                        <!-- /react-text --><i class="glyphicon glyphicon-refresh"></i></a></div>
+                                <!-- react-empty: 748 -->
+                                <div class="device-device-realtime-dashboard">
+                                    <div>
+                                        <div class="board clearfix compact">
+                                            <div style="position: relative;">
+                                                <div class="device-widget square wind" style="/* height: 260px; */">
+                                                    <header><input type="text" disabled="" value="Wind"
+                                                            class="editable-title type-wind"></header>
+                                                    <div class="wind-widget">
+                                                        <!-- react-text: 6271 -->
+                                                        <!-- /react-text -->
+                                                        <div class="rel">
+                                                            <div class="val maxdailygust"><span
+                                                                    class="device-formatted-data-point fdp windspeedmph ">
+                                                                    <!-- react-text: 6275 -->
+                                                                    <!-- /react-text --><span
+                                                                        class="fdp-val">0.7</span><span class="suff">
+                                                                    </span><!-- react-text: 6278 -->
+                                                                    <!-- /react-text --></span>
+                                                                <div class="label"><span
+                                                                        class="device-formatted-data-point fdp windspeedmph ">
+                                                                        <!-- react-text: 6281 -->
+                                                                        <!-- /react-text --><span
+                                                                            class="fdp-val">0.7</span><span
+                                                                            class="suff"> mph</span>
+                                                                        <!-- react-text: 6284 -->
+                                                                        <!-- /react-text --></span></div><span
+                                                                    class="max"><span class="peak">Today's Peak:</span>
+                                                                    <!-- react-text: 6287 -->
+                                                                    <!-- /react-text --><span
+                                                                        class="device-formatted-data-point fdp maxdailygust ">
+                                                                        <!-- react-text: 6289 -->
+                                                                        <!-- /react-text --><span
+                                                                            class="fdp-val">11.4</span><span
+                                                                            class="suff"> mph</span>
+                                                                        <!-- react-text: 6292 -->
+                                                                        <!-- /react-text --></span></span>
+                                                            </div>
+                                                            <div class="compass" style="transform: rotate(231deg);">
+                                                            </div>
+                                                        </div>
+                                                        <div class="corner-wrap">
+                                                            <!-- react-text: 6295 -->From
+                                                            <!-- /react-text --><span
+                                                                class="device-formatted-data-point fdp winddir direction">
+                                                                <!-- react-text: 6297 -->
+                                                                <!-- /react-text --><span class="fdp-val">SW</span>
+                                                                <!-- react-text: 6299 -->
+                                                                <!-- /react-text -->
+                                                                <!-- react-text: 6300 -->
+                                                                <!-- /react-text --></span><span
+                                                                class="device-formatted-data-point fdp winddir degrees">
+                                                                <!-- react-text: 6302 -->
+                                                                <!-- /react-text --><span
+                                                                    class="fdp-val">231</span><span
+                                                                    class="suff">°</span><!-- react-text: 6305 -->
+                                                                <!-- /react-text --></span></div>
+                                                        <div class="corner-wrap right">
+                                                            <!-- react-text: 6307 -->Gusts
+                                                            <!-- /react-text --><span
+                                                                class="device-formatted-data-point fdp windgustmph ">
+                                                                <!-- react-text: 6309 -->
+                                                                <!-- /react-text --><span
+                                                                    class="fdp-val">1.1</span><span class="suff">
+                                                                </span><!-- react-text: 6312 -->
+                                                                <!-- /react-text --></span></div>
+                                                    </div>
+                                                    <div class="buttons-wrap component-min-max-btns">
+                                                        <div class="buttons-rounded"><a tabindex="-1" class="exp"
+                                                                title="expand widget"></a><a tabindex="-1"
+                                                                title="Jump to graph" class="graph"></a><span
+                                                                class="component-share"><a class="share"></a></span><a
+                                                                tabindex="-1" class="minus" title="Hide widget"></a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="device-widget square rain" style="height: 260px;">
+                                                    <header><input type="text" disabled="" value="Rainfall"
+                                                            class="editable-title type-rain"></header>
+                                                    <div class="rain-widget">
+                                                        <div class="outer-wrap">
+                                                            <div class="rain-wrap zero">
+                                                                <div class="rain-tube">
+                                                                    <div class="bg">
+                                                                        <div class="rain" style="height: 22px;"></div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="wrap"><span
+                                                                        class="device-formatted-data-point fdp hourlyrainin ">
+                                                                        <!-- react-text: 6331 -->
+                                                                        <!-- /react-text --><span
+                                                                            class="fdp-val">0.00</span><span
+                                                                            class="suff"> in/hr</span>
+                                                                        <!-- react-text: 6334 -->
+                                                                        <!-- /react-text --></span>
+                                                                    <div class="label rate">Rate</div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="rain-wrap zero">
+                                                                <div class="rain-tube">
+                                                                    <div class="bg">
+                                                                        <div class="rain" style="height: 22px;"></div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="wrap"><span
+                                                                        class="device-formatted-data-point fdp dailyrainin ">
+                                                                        <!-- react-text: 6342 -->
+                                                                        <!-- /react-text --><span
+                                                                            class="fdp-val">0.00</span><span
+                                                                            class="suff"> in</span>
+                                                                        <!-- react-text: 6345 -->
+                                                                        <!-- /react-text --></span>
+                                                                    <div class="label day">Day</div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="rain-wrap zero">
+                                                                <div class="rain-tube">
+                                                                    <div class="bg">
+                                                                        <div class="rain" style="height: 22px;"></div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="wrap"><span
+                                                                        class="device-formatted-data-point fdp eventrainin ">
+                                                                        <!-- react-text: 6353 -->
+                                                                        <!-- /react-text --><span
+                                                                            class="fdp-val">0.00</span><span
+                                                                            class="suff"> in</span>
+                                                                        <!-- react-text: 6356 -->
+                                                                        <!-- /react-text --></span>
+                                                                    <div class="label event">Event</div>
+                                                                </div>
+                                                            </div>
+                                                        </div><!-- react-text: 6358 -->
+                                                        <!-- /react-text -->
+                                                    </div>
+                                                    <div class="buttons-wrap component-min-max-btns">
+                                                        <div class="buttons-rounded"><a tabindex="-1" class="exp"
+                                                                title="expand widget"></a><a tabindex="-1"
+                                                                title="Jump to graph" class="graph"></a><span
+                                                                class="component-share"><a class="share"></a></span><a
+                                                                tabindex="-1" class="minus" title="Hide widget"></a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="device-widget square pressure" style="height: 260px;">
+                                                    <header><input type="text" disabled="" value="Pressure"
+                                                            class="editable-title type-pressure"></header>
+                                                    <div class="pressure-widget unit-0">
+                                                        <div class="change down"><span
+                                                                class="device-formatted-data-point fdp baromrelin ">
+                                                                <!-- react-text: 6372 -->
+                                                                <!-- /react-text --><span
+                                                                    class="fdp-val">0.05</span><span class="suff">
+                                                                    inHg</span><span class="after">/hr</span></span>
+                                                        </div>
+                                                        <div class="gauge">
+                                                            <div class="compass"
+                                                                style="transform: rotate(-43.3368deg);"></div>
+                                                            <div class="barom"><span
+                                                                    class="device-formatted-data-point fdp baromrelin ">
+                                                                    <!-- react-text: 6380 -->
+                                                                    <!-- /react-text --><span
+                                                                        class="fdp-val">29.83</span><span class="suff">
+                                                                        inHg</span><!-- react-text: 6383 -->
+                                                                    <!-- /react-text --></span></div>
+                                                        </div>
+                                                        <div class="spacer"></div>
+                                                    </div>
+                                                    <div class="buttons-wrap component-min-max-btns">
+                                                        <div class="buttons-rounded"><a tabindex="-1"
+                                                                title="Jump to graph" class="graph"></a><a tabindex="-1"
+                                                                class="minus" title="Hide widget"></a></div>
+                                                    </div>
+                                                </div>
+                                                <div class="device-widget square humidity" style="height: 260px;">
+                                                    <header><input type="text" disabled="" value="Humidity"
+                                                            class="editable-title type-humidity"></header>
+                                                    <div class="big-number humidity-widget"><span
+                                                            class="device-formatted-data-point fdp humidity ">
+                                                            <!-- react-text: 6394 -->
+                                                            <!-- /react-text --><span class="fdp-val">10</span><span
+                                                                class="suff">%</span><!-- react-text: 6397 -->
+                                                            <!-- /react-text --></span>
+                                                        <div class="device-from-yesterday">
+                                                            <div class="from zero">
+                                                                <div class="label">From Yesterday</div><span
+                                                                    class="device-formatted-data-point fdp humidity ">
+                                                                    <!-- react-text: 6402 -->
+                                                                    <!-- /react-text --><span
+                                                                        class="fdp-val">0</span><span
+                                                                        class="suff">%</span><!-- react-text: 6405 -->
+                                                                    <!-- /react-text --></span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="buttons-wrap component-min-max-btns">
+                                                        <div class="buttons-rounded"><a tabindex="-1"
+                                                                title="Jump to graph" class="graph"></a><span
+                                                                class="component-share"><a class="share"></a></span><a
+                                                                tabindex="-1" class="minus" title="Hide widget"></a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="device-widget square uv" style="height: 260px;">
+                                                    <header><input type="text" disabled="" value="UV Index"
+                                                            class="editable-title type-uv"></header>
+                                                    <div class="uv-widget">
+                                                        <div class="top">
+                                                            <div class="wrap">
+                                                                <div class="uv-data">5</div>
+                                                                <div class="level">High Risk</div>
+                                                            </div>
+                                                            <div class="bottom"><a class="light" title="Fair Skin">light
+                                                                    skin</a><a class="med" title="Medium Skin">medium
+                                                                    skin</a><a class="dark" title="Dark Skin">dark
+                                                                    skin</a></div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="buttons-wrap component-min-max-btns">
+                                                        <div class="buttons-rounded"><a tabindex="-1"
+                                                                title="Jump to graph" class="graph"></a><span
+                                                                class="component-share"><a class="share"></a></span><a
+                                                                tabindex="-1" class="minus" title="Hide widget"></a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="device-widget square solar" style="height: 260px;">
+                                                    <header><input type="text" disabled="" value="Solar Radiation"
+                                                            class="editable-title type-solar"></header>
+                                                    <div class="solar-widget center-aligned"><span
+                                                            class="device-formatted-data-point fdp solarradiation solarmax">
+                                                            <!-- react-text: 6435 -->
+                                                            <!-- /react-text --><span class="fdp-val">568.3</span><span
+                                                                class="suff"><span>
+                                                                    <!-- react-text: 6439 -->W/m
+                                                                    <!-- /react-text --><sup>2</sup></span></span>
+                                                            <!-- react-text: 6441 -->
+                                                            <!-- /react-text --></span>
+                                                        <div class="from zero">
+                                                            <div class="label">Today's Peak</div><span
+                                                                class="device-formatted-data-point fdp solarradiation ">
+                                                                <!-- react-text: 6445 -->
+                                                                <!-- /react-text --><span
+                                                                    class="fdp-val">620.7</span><span
+                                                                    class="suff"><span>
+                                                                        <!-- react-text: 6449 -->W/m
+                                                                        <!-- /react-text --><sup>2</sup></span></span>
+                                                                <!-- react-text: 6451 -->
+                                                                <!-- /react-text --></span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="buttons-wrap component-min-max-btns">
+                                                        <div class="buttons-rounded"><a tabindex="-1" class="exp"
+                                                                title="expand widget"></a><a tabindex="-1"
+                                                                title="Jump to graph" class="graph"></a><span
+                                                                class="component-share"><a class="share"></a></span><a
+                                                                tabindex="-1" class="minus" title="Hide widget"></a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="device-widget square air hidden">
+                                                    <header><input type="text" disabled="" value="Air Quality"
+                                                            class="editable-title type-air"></header>
+                                                    <div class="device-air-widget">
+                                                        <div class="wrap">
+                                                            <div class="meter">
+                                                                <div class="needle" style="height: 0px;"></div><span
+                                                                    class="device-formatted-data-point fdp pm25 ">
+                                                                    <!-- react-text: 6467 -->
+                                                                    <!-- /react-text --><span class="fdp-val">- -</span>
+                                                                    <!-- react-text: 6469 -->
+                                                                    <!-- /react-text -->
+                                                                    <!-- react-text: 6470 -->
+                                                                    <!-- /react-text --></span>
+                                                            </div>
+                                                            <div class="bottom">
+                                                                <div class="label">
+                                                                    <div>Hazardous</div>
+                                                                </div>
+                                                                <div class="stats"></div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="buttons-wrap component-min-max-btns">
+                                                        <div class="buttons-rounded"><a tabindex="-1" class="exp"
+                                                                title="expand widget"></a><a tabindex="-1"
+                                                                title="Jump to graph" class="graph"></a><span
+                                                                class="component-share"><a class="share"></a></span><a
+                                                                tabindex="-1" class="minus" title="Hide widget"></a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="device-widget square indoor hidden">
+                                                    <header><input type="text" disabled="" value="Indoor"
+                                                            class="editable-title type-indoor"></header>
+                                                    <div class="indoor-widget hidden"></div>
+                                                    <div class="buttons-wrap component-min-max-btns">
+                                                        <div class="buttons-rounded"><a tabindex="-1" class="exp"
+                                                                title="expand widget"></a><a tabindex="-1"
+                                                                title="Jump to graph" class="graph"></a><span
+                                                                class="component-share"><a class="share"></a></span><a
+                                                                tabindex="-1" class="minus" title="Hide widget"></a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="device-widget square airin hidden">
+                                                    <header><input type="text" disabled="" value="Indoor Air Quality"
+                                                            class="editable-title type-airin"></header>
+                                                    <div class="device-air-widget">
+                                                        <div class="wrap">
+                                                            <div class="meter">
+                                                                <div class="needle" style="height: 0px;"></div><span
+                                                                    class="device-formatted-data-point fdp pm25_in ">
+                                                                    <!-- react-text: 6501 -->
+                                                                    <!-- /react-text --><span class="fdp-val">- -</span>
+                                                                    <!-- react-text: 6503 -->
+                                                                    <!-- /react-text -->
+                                                                    <!-- react-text: 6504 -->
+                                                                    <!-- /react-text --></span>
+                                                            </div>
+                                                            <div class="bottom">
+                                                                <div class="label">
+                                                                    <div>Hazardous</div>
+                                                                </div>
+                                                                <div class="stats"></div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="buttons-wrap component-min-max-btns">
+                                                        <div class="buttons-rounded"><a tabindex="-1" class="exp"
+                                                                title="expand widget"></a><a tabindex="-1"
+                                                                title="Jump to graph" class="graph"></a><a tabindex="-1"
+                                                                class="minus" title="Hide widget"></a></div>
+                                                    </div>
+                                                </div>
+                                                <div class="device-widget square relays hidden">
+                                                    <header><input type="text" disabled="" value="Relays"
+                                                            class="editable-title type-relays"></header>
+                                                    <div class="relays-widget hidden"></div>
+                                                    <div class="buttons-wrap component-min-max-btns">
+                                                        <div class="buttons-rounded"><a tabindex="-1" class="exp"
+                                                                title="expand widget"></a><a tabindex="-1"
+                                                                title="Jump to graph" class="graph"></a><a tabindex="-1"
+                                                                class="minus" title="Hide widget"></a></div>
+                                                    </div>
+                                                </div>
+                                                <div class="device-widget square battery hidden">
+                                                    <header><input type="text" disabled="" value="Batteries"
+                                                            class="editable-title type-battery"></header>
+                                                    <div class="device-battery-widget small-flex-lines ok">
+                                                        <div class="wrap">
+                                                            <h5>
+                                                                <div>All Batteries OK</div><!-- react-text: 6530 -->
+                                                                <!-- /react-text --><i class="battery-full"></i>
+                                                            </h5>
+                                                        </div>
+                                                    </div>
+                                                    <div class="buttons-wrap component-min-max-btns">
+                                                        <div class="buttons-rounded"><a tabindex="-1" class="exp"
+                                                                title="expand widget"></a><a tabindex="-1"
+                                                                title="Jump to graph" class="graph"></a><a tabindex="-1"
+                                                                class="minus" title="Hide widget"></a></div>
+                                                    </div>
+                                                </div>
+                                                <div class="device-widget square forecast" style="height: 260px;">
+                                                    <header><input type="text" disabled="" value="Forecast"
+                                                            class="editable-title type-forecast"></header>
+                                                    <div class="component-fetches-forecast">
+                                                        <div
+                                                            class="device-forecast-widget component-forecast-long-term md lg">
+                                                            <a class="close"></a>
+                                                            <div class="forecast-text"><span
+                                                                    class="device-formatted-data-point fdp tempf ">
+                                                                    <!-- react-text: 6545 -->
+                                                                    <!-- /react-text --><span
+                                                                        class="fdp-val">81.7</span><span
+                                                                        class="suff">°F</span><span
+                                                                        class="after">°</span></span>
+                                                                <!-- react-text: 6549 -->&nbsp;
+                                                                <!-- /react-text --><span>
+                                                                    <!-- react-text: 6551 -->
+                                                                    <!-- /react-text --></span><span>
+                                                                    <!-- react-text: 6553 -->Mostly cloudy throughout
+                                                                    the day.
+                                                                    <!-- /react-text -->
+                                                                    <!-- react-text: 6554 -->
+                                                                    <!-- /react-text --></span></div>
+                                                            <div class="component-day-forecast today title-today">
+                                                                <div class="title">Today</div>
+                                                                <div class="title-precip precip"><span class="drop">
+                                                                        <!-- react-text: 6559 -->35
+                                                                        <!-- /react-text -->
+                                                                        <!-- react-text: 6560 -->%
+                                                                        <!-- /react-text --></span></div>
+                                                                <div class="weather-icon partly-cloudy-day"></div>
+                                                                <div class="hl"><span
+                                                                        class="device-formatted-data-point fdp tempf ">
+                                                                        <!-- react-text: 6564 -->
+                                                                        <!-- /react-text --><span
+                                                                            class="fdp-val">85.3</span><span
+                                                                            class="suff">°F</span><span
+                                                                            class="after">°</span></span><span
+                                                                        class="device-formatted-data-point fdp tempf ">
+                                                                        <!-- react-text: 6569 -->
+                                                                        <!-- /react-text --><span
+                                                                            class="fdp-val">61.4</span><span
+                                                                            class="suff">°F</span><span
+                                                                            class="after">°</span></span></div>
+                                                                <div class="precip"><span class="drop">
+                                                                        <!-- react-text: 6575 -->35
+                                                                        <!-- /react-text -->
+                                                                        <!-- react-text: 6576 -->%
+                                                                        <!-- /react-text --></span><span
+                                                                        class="device-formatted-data-point fdp dailyrainin ">
+                                                                        <!-- react-text: 6578 -->
+                                                                        <!-- /react-text --><span
+                                                                            class="fdp-val">0.00</span><span
+                                                                            class="suff"> in</span>
+                                                                        <!-- react-text: 6581 -->
+                                                                        <!-- /react-text --></span></div>
+                                                            </div>
+                                                            <div class="other-days">
+                                                                <div class="component-day-forecast title-t">
+                                                                    <div class="title">T</div>
+                                                                    <div class="title-precip precip"><span class="drop">
+                                                                            <!-- react-text: 6587 -->55
+                                                                            <!-- /react-text -->
+                                                                            <!-- react-text: 6588 -->%
+                                                                            <!-- /react-text --></span></div>
+                                                                    <div class="weather-icon rain"></div>
+                                                                    <div class="hl"><span
+                                                                            class="device-formatted-data-point fdp tempf ">
+                                                                            <!-- react-text: 6592 -->
+                                                                            <!-- /react-text --><span
+                                                                                class="fdp-val">84.1</span><span
+                                                                                class="suff">°F</span><span
+                                                                                class="after">°</span></span><span
+                                                                            class="device-formatted-data-point fdp tempf ">
+                                                                            <!-- react-text: 6597 -->
+                                                                            <!-- /react-text --><span
+                                                                                class="fdp-val">62.1</span><span
+                                                                                class="suff">°F</span><span
+                                                                                class="after">°</span></span></div>
+                                                                    <div class="precip"><span class="drop">
+                                                                            <!-- react-text: 6603 -->55
+                                                                            <!-- /react-text -->
+                                                                            <!-- react-text: 6604 -->%
+                                                                            <!-- /react-text --></span><span
+                                                                            class="device-formatted-data-point fdp dailyrainin ">
+                                                                            <!-- react-text: 6606 -->
+                                                                            <!-- /react-text --><span
+                                                                                class="fdp-val">0.01</span><span
+                                                                                class="suff"> in</span>
+                                                                            <!-- react-text: 6609 -->
+                                                                            <!-- /react-text --></span></div>
+                                                                </div>
+                                                                <div class="component-day-forecast title-w">
+                                                                    <div class="title">W</div>
+                                                                    <div class="title-precip precip"><span class="drop">
+                                                                            <!-- react-text: 6614 -->61
+                                                                            <!-- /react-text -->
+                                                                            <!-- react-text: 6615 -->%
+                                                                            <!-- /react-text --></span></div>
+                                                                    <div class="weather-icon rain"></div>
+                                                                    <div class="hl"><span
+                                                                            class="device-formatted-data-point fdp tempf ">
+                                                                            <!-- react-text: 6619 -->
+                                                                            <!-- /react-text --><span
+                                                                                class="fdp-val">82.9</span><span
+                                                                                class="suff">°F</span><span
+                                                                                class="after">°</span></span><span
+                                                                            class="device-formatted-data-point fdp tempf ">
+                                                                            <!-- react-text: 6624 -->
+                                                                            <!-- /react-text --><span
+                                                                                class="fdp-val">62.0</span><span
+                                                                                class="suff">°F</span><span
+                                                                                class="after">°</span></span></div>
+                                                                    <div class="precip"><span class="drop">
+                                                                            <!-- react-text: 6630 -->61
+                                                                            <!-- /react-text -->
+                                                                            <!-- react-text: 6631 -->%
+                                                                            <!-- /react-text --></span><span
+                                                                            class="device-formatted-data-point fdp dailyrainin ">
+                                                                            <!-- react-text: 6633 -->
+                                                                            <!-- /react-text --><span
+                                                                                class="fdp-val">0.01</span><span
+                                                                                class="suff"> in</span>
+                                                                            <!-- react-text: 6636 -->
+                                                                            <!-- /react-text --></span></div>
+                                                                </div>
+                                                                <div class="component-day-forecast title-t">
+                                                                    <div class="title">T</div>
+                                                                    <div class="title-precip precip"><span class="drop">
+                                                                            <!-- react-text: 6641 -->54
+                                                                            <!-- /react-text -->
+                                                                            <!-- react-text: 6642 -->%
+                                                                            <!-- /react-text --></span></div>
+                                                                    <div class="weather-icon rain"></div>
+                                                                    <div class="hl"><span
+                                                                            class="device-formatted-data-point fdp tempf ">
+                                                                            <!-- react-text: 6646 -->
+                                                                            <!-- /react-text --><span
+                                                                                class="fdp-val">81.6</span><span
+                                                                                class="suff">°F</span><span
+                                                                                class="after">°</span></span><span
+                                                                            class="device-formatted-data-point fdp tempf ">
+                                                                            <!-- react-text: 6651 -->
+                                                                            <!-- /react-text --><span
+                                                                                class="fdp-val">62.2</span><span
+                                                                                class="suff">°F</span><span
+                                                                                class="after">°</span></span></div>
+                                                                    <div class="precip"><span class="drop">
+                                                                            <!-- react-text: 6657 -->54
+                                                                            <!-- /react-text -->
+                                                                            <!-- react-text: 6658 -->%
+                                                                            <!-- /react-text --></span><span
+                                                                            class="device-formatted-data-point fdp dailyrainin ">
+                                                                            <!-- react-text: 6660 -->
+                                                                            <!-- /react-text --><span
+                                                                                class="fdp-val">0.01</span><span
+                                                                                class="suff"> in</span>
+                                                                            <!-- react-text: 6663 -->
+                                                                            <!-- /react-text --></span></div>
+                                                                </div>
+                                                                <div class="component-day-forecast title-f">
+                                                                    <div class="title">F</div>
+                                                                    <div class="title-precip precip"><span class="drop">
+                                                                            <!-- react-text: 6668 -->59
+                                                                            <!-- /react-text -->
+                                                                            <!-- react-text: 6669 -->%
+                                                                            <!-- /react-text --></span></div>
+                                                                    <div class="weather-icon rain"></div>
+                                                                    <div class="hl"><span
+                                                                            class="device-formatted-data-point fdp tempf ">
+                                                                            <!-- react-text: 6673 -->
+                                                                            <!-- /react-text --><span
+                                                                                class="fdp-val">85.3</span><span
+                                                                                class="suff">°F</span><span
+                                                                                class="after">°</span></span><span
+                                                                            class="device-formatted-data-point fdp tempf ">
+                                                                            <!-- react-text: 6678 -->
+                                                                            <!-- /react-text --><span
+                                                                                class="fdp-val">62.9</span><span
+                                                                                class="suff">°F</span><span
+                                                                                class="after">°</span></span></div>
+                                                                    <div class="precip"><span class="drop">
+                                                                            <!-- react-text: 6684 -->59
+                                                                            <!-- /react-text -->
+                                                                            <!-- react-text: 6685 -->%
+                                                                            <!-- /react-text --></span><span
+                                                                            class="device-formatted-data-point fdp dailyrainin ">
+                                                                            <!-- react-text: 6687 -->
+                                                                            <!-- /react-text --><span
+                                                                                class="fdp-val">0.01</span><span
+                                                                                class="suff"> in</span>
+                                                                            <!-- react-text: 6690 -->
+                                                                            <!-- /react-text --></span></div>
+                                                                </div>
+                                                                <div class="component-day-forecast title-s">
+                                                                    <div class="title">S</div>
+                                                                    <div class="title-precip precip"><span class="drop">
+                                                                            <!-- react-text: 6695 -->77
+                                                                            <!-- /react-text -->
+                                                                            <!-- react-text: 6696 -->%
+                                                                            <!-- /react-text --></span></div>
+                                                                    <div class="weather-icon rain"></div>
+                                                                    <div class="hl"><span
+                                                                            class="device-formatted-data-point fdp tempf ">
+                                                                            <!-- react-text: 6700 -->
+                                                                            <!-- /react-text --><span
+                                                                                class="fdp-val">81.8</span><span
+                                                                                class="suff">°F</span><span
+                                                                                class="after">°</span></span><span
+                                                                            class="device-formatted-data-point fdp tempf ">
+                                                                            <!-- react-text: 6705 -->
+                                                                            <!-- /react-text --><span
+                                                                                class="fdp-val">61.9</span><span
+                                                                                class="suff">°F</span><span
+                                                                                class="after">°</span></span></div>
+                                                                    <div class="precip"><span class="drop">
+                                                                            <!-- react-text: 6711 -->77
+                                                                            <!-- /react-text -->
+                                                                            <!-- react-text: 6712 -->%
+                                                                            <!-- /react-text --></span><span
+                                                                            class="device-formatted-data-point fdp dailyrainin ">
+                                                                            <!-- react-text: 6714 -->
+                                                                            <!-- /react-text --><span
+                                                                                class="fdp-val">0.04</span><span
+                                                                                class="suff"> in</span>
+                                                                            <!-- react-text: 6717 -->
+                                                                            <!-- /react-text --></span></div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="buttons-wrap component-min-max-btns">
+                                                        <div class="buttons-rounded"><a tabindex="-1" class="exp"
+                                                                title="expand widget"></a><a tabindex="-1"
+                                                                title="Jump to graph" class="graph"></a><a tabindex="-1"
+                                                                class="minus" title="Hide widget"></a></div>
+                                                    </div>
+                                                </div>
+                                                <div class="device-widget square sunMoon" style="height: 260px;">
+                                                    <header><input type="text" disabled="" value="Sun / Moon"
+                                                            class="editable-title type-sunMoon"></header>
+                                                    <div class="device-sun-moon-widget">
+                                                        <div class="wrap">
+                                                            <div class="recharts-responsive-container"
+                                                                style="width: 100%; height: 190px;">
+                                                                <div class="recharts-wrapper"
+                                                                    style="position: relative; cursor: default; width: 1087px; height: 190px;">
+                                                                    <svg class="recharts-surface" width="1087"
+                                                                        height="190" viewBox="0 0 1087 190"
+                                                                        version="1.1">
+                                                                        <defs>
+                                                                            <clipPath id="recharts60-clip">
+                                                                                <rect x="5" y="5" height="180"
+                                                                                    width="1077"></rect>
+                                                                            </clipPath>
+                                                                        </defs>
+                                                                        <g class="recharts-layer recharts-pie">
+                                                                            <g
+                                                                                class="recharts-layer recharts-pie-sector">
+                                                                                <path fill="#fcd754" stroke="#fff"
+                                                                                    color="#fcd754"
+                                                                                    class="recharts-sector" d="M 618.8667998589142,100.93342051656298
+        A 75.6,75.6,0,
+        1,0,
+        467.96050910233373,91.97587782631146
+      L 475.1547463306829,92.26388946190085
+                A 68.4,68.4,0,
+                1,1,
+                611.6890093961605,100.36833284831889 Z"></path>
+                                                                            </g>
+                                                                            <g
+                                                                                class="recharts-layer recharts-pie-sector">
+                                                                                <path fill="#f6e5b2" stroke="#fff"
+                                                                                    color="#f6e5b2"
+                                                                                    class="recharts-sector" d="M 467.96050910233373,91.97587782631146
+        A 75.6,75.6,0,
+        0,0,
+        467.9985090943302,98.85809162942716
+      L 475.18912727582256,98.49065433138648
+                A 68.4,68.4,0,
+                0,1,
+                475.1547463306829,92.26388946190085 Z"></path>
+                                                                            </g>
+                                                                            <g
+                                                                                class="recharts-layer recharts-pie-sector">
+                                                                                <path fill="#f5f5f5" stroke="#fff"
+                                                                                    color="#f5f5f5"
+                                                                                    class="recharts-sector" d="M 467.9985090943302,98.85809162942716
+        A 75.6,75.6,0,
+        0,0,
+        618.0149021522385,107.7628114944285
+      L 610.9182448044063,106.54730563781627
+                A 68.4,68.4,0,
+                0,1,
+                475.18912727582256,98.49065433138648 Z"></path>
+                                                                            </g>
+                                                                            <g
+                                                                                class="recharts-layer recharts-pie-sector">
+                                                                                <path fill="#f6e5b2" stroke="#fff"
+                                                                                    color="#f6e5b2"
+                                                                                    class="recharts-sector" d="M 618.0149021522385,107.7628114944285
+        A 75.6,75.6,0,
+        0,0,
+        618.8667998589142,100.93342051656313
+      L 611.6890093961605,100.36833284831903
+                A 68.4,68.4,0,
+                0,1,
+                610.9182448044063,106.54730563781627 Z"></path>
+                                                                            </g>
+                                                                            <g
+                                                                                class="recharts-layer recharts-pie-labels">
+                                                                                <g class="recharts-layer">
+                                                                                    <path fill="none" stroke="#fcd754"
+                                                                                        color="#fcd754"
+                                                                                        class="recharts-curve recharts-pie-label-line"
+                                                                                        d="M547.9796035885596,19.532833949528992L549.1646839029934,-0.4320247939818529">
+                                                                                    </path><svg viewBox="0 0 53 53"
+                                                                                        xmlns="http://www.w3.org/2000/svg"
+                                                                                        width="24" height="24"
+                                                                                        x="548.3476665070054"
+                                                                                        y="12.998884771250061">
+                                                                                        <g transform="translate(1 1)"
+                                                                                            fill="none"
+                                                                                            fill-rule="evenodd">
+                                                                                            <ellipse stroke="#FFF"
+                                                                                                stroke-width="5"
+                                                                                                fill="#FFC924"
+                                                                                                cx="25.511" cy="25.492"
+                                                                                                rx="14.236" ry="14.415">
+                                                                                            </ellipse>
+                                                                                            <path
+                                                                                                d="M44 25.5h6.5M.5 25.5H7M25.274.514V7M25.387 44.06v6.424M12.5 38.5l-5 5M38.635 12.5l4.925-4.838M7.621 7.662L12.5 12.5M38.592 38.5l4.933 5"
+                                                                                                stroke="#FFC924"
+                                                                                                stroke-width="3"
+                                                                                                stroke-linecap="round">
+                                                                                            </path>
+                                                                                        </g>
+                                                                                    </svg>
+                                                                                </g>
+                                                                                <g class="recharts-layer">
+                                                                                    <path fill="none" stroke="#f6e5b2"
+                                                                                        color="#f6e5b2"
+                                                                                        class="recharts-curve recharts-pie-label-line"
+                                                                                        d="M467.90115237163417,95.41741737281075L447.9014572318548,95.52784524921572">
+                                                                                    </path><text fill="#f6e5b2"
+                                                                                        stroke="none" color="#f6e5b2"
+                                                                                        x="447.9014572318548"
+                                                                                        y="95.52784524921572"
+                                                                                        alignment-baseline="middle"
+                                                                                        class="recharts-text recharts-pie-label-text"
+                                                                                        text-anchor="end">
+                                                                                        <tspan x="447.9014572318548"
+                                                                                            dy="0em"></tspan>
+                                                                                    </text>
+                                                                                </g>
+                                                                                <g class="recharts-layer">
+                                                                                    <path fill="none" stroke="#f5f5f5"
+                                                                                        color="#f5f5f5"
+                                                                                        class="recharts-curve recharts-pie-label-line"
+                                                                                        d="M539.0203964114403,170.467166050471L537.8353160970065,190.43202479398184">
+                                                                                    </path><text fill="#f5f5f5"
+                                                                                        stroke="none" color="#f5f5f5"
+                                                                                        x="537.8353160970065"
+                                                                                        y="190.43202479398184"
+                                                                                        alignment-baseline="middle"
+                                                                                        class="recharts-text recharts-pie-label-text"
+                                                                                        text-anchor="end">
+                                                                                        <tspan x="537.8353160970065"
+                                                                                            dy="0em"></tspan>
+                                                                                    </text>
+                                                                                </g>
+                                                                                <g class="recharts-layer">
+                                                                                    <path fill="none" stroke="#f6e5b2"
+                                                                                        color="#f6e5b2"
+                                                                                        class="recharts-curve recharts-pie-label-line"
+                                                                                        d="M618.5186063235124,104.35781519789025L638.3647984725898,106.83342768410459">
+                                                                                    </path><text fill="#f6e5b2"
+                                                                                        stroke="none" color="#f6e5b2"
+                                                                                        x="638.3647984725898"
+                                                                                        y="106.83342768410459"
+                                                                                        alignment-baseline="middle"
+                                                                                        class="recharts-text recharts-pie-label-text"
+                                                                                        text-anchor="start">
+                                                                                        <tspan x="638.3647984725898"
+                                                                                            dy="0em"></tspan>
+                                                                                    </text>
+                                                                                </g>
+                                                                            </g>
+                                                                        </g>
+                                                                        <g class="recharts-layer recharts-pie">
+                                                                            <g
+                                                                                class="recharts-layer recharts-pie-sector">
+                                                                                <path fill="#f5f5f5" stroke="#fff"
+                                                                                    color="#f5f5f5"
+                                                                                    class="recharts-sector" d="M 586.5577589698986,122.88762077499825
+        A 51.3,51.3,0,
+        1,0,
+        497.76675058147043,71.75865972835115
+      L 504.1854522542465,75.02060222261765
+                A 44.1,44.1,0,
+                1,1,
+                580.5145647285093,118.973568736402 Z"></path>
+                                                                            </g>
+                                                                            <g
+                                                                                class="recharts-layer recharts-pie-sector">
+                                                                                <path fill="#09a8e6" stroke="#fff"
+                                                                                    color="#09a8e6"
+                                                                                    class="recharts-sector" d="M 497.76675058147043,71.75865972835115
+        A 51.3,51.3,0,
+        0,0,
+        586.5577589698986,122.88762077499824
+      L 580.5145647285094,118.973568736402
+                A 44.1,44.1,0,
+                0,1,
+                504.1854522542465,75.02060222261765 Z"></path>
+                                                                            </g>
+                                                                            <g
+                                                                                class="recharts-layer recharts-pie-labels">
+                                                                                <g class="recharts-layer">
+                                                                                    <path fill="none" stroke="#f5f5f5"
+                                                                                        color="#f5f5f5"
+                                                                                        class="recharts-curve recharts-pie-label-line"
+                                                                                        d="M569.0994575472326,50.5437543950523L579.0797528872844,33.211884763493735">
+                                                                                    </path><svg viewBox="0 0 39 39"
+                                                                                        xmlns="http://www.w3.org/2000/svg"
+                                                                                        xmlns:xlink="http://www.w3.org/1999/xlink"
+                                                                                        width="17" height="17"
+                                                                                        x="546.1615790608911"
+                                                                                        y="40.12426116095316">
+                                                                                        <defs>
+                                                                                            <path id="a"
+                                                                                                d="M0 .042h7.96v9.917H0z">
+                                                                                            </path>
+                                                                                            <path id="c"
+                                                                                                d="M0 .042h7.96v9.917H0z">
+                                                                                            </path>
+                                                                                        </defs>
+                                                                                        <g fill="none"
+                                                                                            fill-rule="evenodd">
+                                                                                            <circle stroke="#FFF"
+                                                                                                stroke-width="5"
+                                                                                                fill="#FFF"
+                                                                                                transform="matrix(1 0 0 -1 0 39)"
+                                                                                                cx="19.5" cy="19.5"
+                                                                                                r="17"></circle>
+                                                                                            <g
+                                                                                                transform="translate(5 5)">
+                                                                                                <circle fill="#DBDDDD"
+                                                                                                    transform="matrix(1 0 0 -1 0 29)"
+                                                                                                    cx="14.5" cy="14.5"
+                                                                                                    r="14.5"></circle>
+                                                                                                <g
+                                                                                                    transform="translate(1 6)">
+                                                                                                    <mask id="b"
+                                                                                                        fill="#fff">
+                                                                                                        <use
+                                                                                                            xlink:href="#a">
+                                                                                                        </use>
+                                                                                                    </mask>
+                                                                                                    <path
+                                                                                                        d="M7.922 3.941c-.104-.701-.635-1.292-1.233-1.676.024-.058.045-.117.06-.177.11-.434.022-.906-.175-1.303-.23-.467-.738-.693-1.253-.738-.465-.04-1.008.176-1.378.429-.479.328-.85.719-1.207 1.161a3.997 3.997 0 0 0-.64 1.138c-.028.072-.054.144-.08.217l-.02.053c-.505.224-.795.764-.642 1.292.032.11.083.213.148.306A4.612 4.612 0 0 0 .298 6.765C.12 7.447.075 8.161.004 8.86c-.05.48.39.941.854 1.062.584.152 1.299-.182 1.431-.77a7.25 7.25 0 0 1 .187-.712l.015-.04c.013-.028.03-.065.043-.089l.024-.037c.02-.024.052-.063.08-.093l.009-.005a.376.376 0 0 1 .037-.018l.1-.022c.034-.002.07-.002.104-.003.36-.008.717.044 1.078.026 1.424-.07 2.798-1.048 3.536-2.163.42-.634.527-1.328.42-2.056"
+                                                                                                        fill="#D6D6D6"
+                                                                                                        mask="url(#b)">
+                                                                                                    </path>
+                                                                                                </g>
+                                                                                                <path
+                                                                                                    d="M13.511 20.895c-.338-.376-.68-.75-.968-1.155a4.59 4.59 0 0 1-.244-.388l-.007-.016a2.713 2.713 0 0 1-.156-.463v-.01c-.01-.101-.833-1.66-1.136-1.863-1.5-1-1.5-.483-1.5-1 0-1 1.5-1.5.55-3.568s-.918.323-1.074.739l-.024.059a.87.87 0 0 1-.023.041c-.026.043-.113.15-.144.19-.043.04-.088.08-.134.118-.041.034-.085.067-.13.1-.011.009-.02.016-.03.022-.394.245-.833.436-1.253.647-.492.248-.986.536-1.361.905-.518.511-.743 1.095-.846 1.751-.092.588.02 1.175.323 1.709.37.652 1.171.837 1.93.972a3.596 3.596 0 0 1 .239.053l.073.039.04.032.061.053a.6.6 0 0 1 .019.023c.032.042.06.086.088.13l.015.023c.172.394.22.823.31 1.234.107.498.296 1.007.643 1.425.263.317.543.539.908.77.302.192.712.288 1.076.364.114.024.229.046.343.072.036.28 1.901.597 2.401-.403.5-1 .771-1.759.011-2.605zM7.127 3.04h-.01l-.012-.005a.787.787 0 0 0-.464 0 .9.9 0 0 0-.522.45c-.118.226-.15.502-.088.755l.088.234a.938.938 0 0 0 .313.351c.096.05.205.116.315.134.134.021.25.041.38.041C7.603 5 8 4.554 8 4.02s-.397-.979-.873-.98M12 6c-.545 0-1 .455-1 1 0 .545.455 1 1 1 .545 0 1-.455 1-1 0-.545-.455-1-1-1M5 21c-.545 0-1 .455-1 1 0 .545.455 1 1 1 .545 0 1-.455 1-1 0-.545-.455-1-1-1"
+                                                                                                    fill="#D6D6D6">
+                                                                                                </path>
+                                                                                                <g>
+                                                                                                    <g
+                                                                                                        transform="rotate(180 14 11)">
+                                                                                                        <mask id="d"
+                                                                                                            fill="#fff">
+                                                                                                            <use
+                                                                                                                xlink:href="#c">
+                                                                                                            </use>
+                                                                                                        </mask>
+                                                                                                        <path
+                                                                                                            d="M7.922 3.941c-.104-.701-.635-1.292-1.233-1.676.024-.058.045-.117.06-.177.11-.434.022-.906-.175-1.303-.23-.467-.738-.693-1.253-.738-.465-.04-1.008.176-1.378.429-.479.328-.85.719-1.207 1.161a3.997 3.997 0 0 0-.64 1.138c-.028.072-.054.144-.08.217l-.02.053c-.505.224-.795.764-.642 1.292.032.11.083.213.148.306A4.612 4.612 0 0 0 .298 6.765C.12 7.447.075 8.161.004 8.86c-.05.48.39.941.854 1.062.584.152 1.299-.182 1.431-.77a7.25 7.25 0 0 1 .187-.712l.015-.04c.013-.028.03-.065.043-.089l.024-.037c.02-.024.052-.063.08-.093l.009-.005a.376.376 0 0 1 .037-.018l.1-.022c.034-.002.07-.002.104-.003.36-.008.717.044 1.078.026 1.424-.07 2.798-1.048 3.536-2.163.42-.634.527-1.328.42-2.056"
+                                                                                                            fill="#D6D6D6"
+                                                                                                            mask="url(#d)">
+                                                                                                        </path>
+                                                                                                    </g>
+                                                                                                    <path
+                                                                                                        d="M15.489 7.105c.338.376.68.75.968 1.155a4.59 4.59 0 0 1 .244.388l.007.016a2.713 2.713 0 0 1 .156.463v.01c.01.101.833 1.66 1.136 1.863 1.5 1 1.5.483 1.5 1 0 1-1.5 1.5-.55 3.568s.918-.323 1.074-.739l.024-.059a.87.87 0 0 1 .023-.041c.026-.043.113-.15.144-.19.043-.04.088-.08.134-.118.041-.034.085-.067.13-.1.011-.009.02-.016.03-.022.394-.245.833-.436 1.253-.647.492-.248.986-.536 1.361-.905.518-.511.743-1.095.846-1.751a2.608 2.608 0 0 0-.323-1.709c-.37-.652-1.171-.837-1.93-.972a3.596 3.596 0 0 1-.239-.053l-.073-.039-.04-.032a1.162 1.162 0 0 1-.061-.053.6.6 0 0 1-.019-.023c-.032-.042-.06-.086-.088-.13a2.675 2.675 0 0 0-.015-.023c-.172-.394-.22-.823-.31-1.234-.107-.498-.296-1.007-.643-1.425-.263-.317-.543-.539-.908-.77-.302-.192-.712-.288-1.076-.364-.114-.024-.229-.046-.343-.072C17.865 3.817 16 3.5 15.5 4.5c-.5 1-.771 1.759-.011 2.605zM21.873 24.96h.01l.012.005c.155.047.31.047.464 0a.9.9 0 0 0 .522-.45c.118-.226.15-.502.088-.755l-.088-.234a.938.938 0 0 0-.313-.351c-.096-.05-.205-.116-.315-.134-.134-.021-.25-.041-.38-.041-.476 0-.873.446-.873.98s.397.979.873.98M17 22c.545 0 1-.455 1-1 0-.545-.455-1-1-1-.545 0-1 .455-1 1 0 .545.455 1 1 1M24 7c.545 0 1-.455 1-1 0-.545-.455-1-1-1-.545 0-1 .455-1 1 0 .545.455 1 1 1"
+                                                                                                        fill="#D6D6D6">
+                                                                                                    </path>
+                                                                                                </g>
+                                                                                            </g>
+                                                                                        </g>
+                                                                                    </svg>
+                                                                                </g>
+                                                                                <g class="recharts-layer">
+                                                                                    <path fill="none" stroke="#09a8e6"
+                                                                                        color="#09a8e6"
+                                                                                        class="recharts-curve recharts-pie-label-line"
+                                                                                        d="M517.9005424527674,139.4562456049477L507.92024711271563,156.78811523650626">
+                                                                                    </path><text fill="#09a8e6"
+                                                                                        stroke="none" color="#09a8e6"
+                                                                                        x="507.92024711271563"
+                                                                                        y="156.78811523650626"
+                                                                                        alignment-baseline="middle"
+                                                                                        class="recharts-text recharts-pie-label-text"
+                                                                                        text-anchor="end">
+                                                                                        <tspan x="507.92024711271563"
+                                                                                            dy="0em"></tspan>
+                                                                                    </text>
+                                                                                </g>
+                                                                            </g>
+                                                                        </g>
+                                                                    </svg></div>
+                                                                <div
+                                                                    style="position: absolute; width: 0px; height: 0px; visibility: hidden; display: none;">
+                                                                </div>
+                                                            </div>
+                                                            <div class="info">
+                                                                <div class="rise">
+                                                                    <div class="label">Rise</div>
+                                                                    <div class="sun">6:09 am</div>
+                                                                    <div class="moon"><svg viewBox="0 0 39 39"
+                                                                            xmlns="http://www.w3.org/2000/svg"
+                                                                            xmlns:xlink="http://www.w3.org/1999/xlink"
+                                                                            height="11" width="11">
+                                                                            <defs>
+                                                                                <path id="a" d="M0 .042h7.96v9.917H0z">
+                                                                                </path>
+                                                                                <path id="c" d="M0 .042h7.96v9.917H0z">
+                                                                                </path>
+                                                                            </defs>
+                                                                            <g fill="none" fill-rule="evenodd">
+                                                                                <circle stroke="#FFF" stroke-width="5"
+                                                                                    fill="#FFF"
+                                                                                    transform="matrix(1 0 0 -1 0 39)"
+                                                                                    cx="19.5" cy="19.5" r="17"></circle>
+                                                                                <g transform="translate(5 5)">
+                                                                                    <circle fill="#DBDDDD"
+                                                                                        transform="matrix(1 0 0 -1 0 29)"
+                                                                                        cx="14.5" cy="14.5" r="14.5">
+                                                                                    </circle>
+                                                                                    <g transform="translate(1 6)">
+                                                                                        <mask id="b" fill="#fff">
+                                                                                            <use xlink:href="#a"></use>
+                                                                                        </mask>
+                                                                                        <path
+                                                                                            d="M7.922 3.941c-.104-.701-.635-1.292-1.233-1.676.024-.058.045-.117.06-.177.11-.434.022-.906-.175-1.303-.23-.467-.738-.693-1.253-.738-.465-.04-1.008.176-1.378.429-.479.328-.85.719-1.207 1.161a3.997 3.997 0 0 0-.64 1.138c-.028.072-.054.144-.08.217l-.02.053c-.505.224-.795.764-.642 1.292.032.11.083.213.148.306A4.612 4.612 0 0 0 .298 6.765C.12 7.447.075 8.161.004 8.86c-.05.48.39.941.854 1.062.584.152 1.299-.182 1.431-.77a7.25 7.25 0 0 1 .187-.712l.015-.04c.013-.028.03-.065.043-.089l.024-.037c.02-.024.052-.063.08-.093l.009-.005a.376.376 0 0 1 .037-.018l.1-.022c.034-.002.07-.002.104-.003.36-.008.717.044 1.078.026 1.424-.07 2.798-1.048 3.536-2.163.42-.634.527-1.328.42-2.056"
+                                                                                            fill="#D6D6D6"
+                                                                                            mask="url(#b)"></path>
+                                                                                    </g>
+                                                                                    <path
+                                                                                        d="M13.511 20.895c-.338-.376-.68-.75-.968-1.155a4.59 4.59 0 0 1-.244-.388l-.007-.016a2.713 2.713 0 0 1-.156-.463v-.01c-.01-.101-.833-1.66-1.136-1.863-1.5-1-1.5-.483-1.5-1 0-1 1.5-1.5.55-3.568s-.918.323-1.074.739l-.024.059a.87.87 0 0 1-.023.041c-.026.043-.113.15-.144.19-.043.04-.088.08-.134.118-.041.034-.085.067-.13.1-.011.009-.02.016-.03.022-.394.245-.833.436-1.253.647-.492.248-.986.536-1.361.905-.518.511-.743 1.095-.846 1.751-.092.588.02 1.175.323 1.709.37.652 1.171.837 1.93.972a3.596 3.596 0 0 1 .239.053l.073.039.04.032.061.053a.6.6 0 0 1 .019.023c.032.042.06.086.088.13l.015.023c.172.394.22.823.31 1.234.107.498.296 1.007.643 1.425.263.317.543.539.908.77.302.192.712.288 1.076.364.114.024.229.046.343.072.036.28 1.901.597 2.401-.403.5-1 .771-1.759.011-2.605zM7.127 3.04h-.01l-.012-.005a.787.787 0 0 0-.464 0 .9.9 0 0 0-.522.45c-.118.226-.15.502-.088.755l.088.234a.938.938 0 0 0 .313.351c.096.05.205.116.315.134.134.021.25.041.38.041C7.603 5 8 4.554 8 4.02s-.397-.979-.873-.98M12 6c-.545 0-1 .455-1 1 0 .545.455 1 1 1 .545 0 1-.455 1-1 0-.545-.455-1-1-1M5 21c-.545 0-1 .455-1 1 0 .545.455 1 1 1 .545 0 1-.455 1-1 0-.545-.455-1-1-1"
+                                                                                        fill="#D6D6D6"></path>
+                                                                                    <g>
+                                                                                        <g
+                                                                                            transform="rotate(180 14 11)">
+                                                                                            <mask id="d" fill="#fff">
+                                                                                                <use xlink:href="#c">
+                                                                                                </use>
+                                                                                            </mask>
+                                                                                            <path
+                                                                                                d="M7.922 3.941c-.104-.701-.635-1.292-1.233-1.676.024-.058.045-.117.06-.177.11-.434.022-.906-.175-1.303-.23-.467-.738-.693-1.253-.738-.465-.04-1.008.176-1.378.429-.479.328-.85.719-1.207 1.161a3.997 3.997 0 0 0-.64 1.138c-.028.072-.054.144-.08.217l-.02.053c-.505.224-.795.764-.642 1.292.032.11.083.213.148.306A4.612 4.612 0 0 0 .298 6.765C.12 7.447.075 8.161.004 8.86c-.05.48.39.941.854 1.062.584.152 1.299-.182 1.431-.77a7.25 7.25 0 0 1 .187-.712l.015-.04c.013-.028.03-.065.043-.089l.024-.037c.02-.024.052-.063.08-.093l.009-.005a.376.376 0 0 1 .037-.018l.1-.022c.034-.002.07-.002.104-.003.36-.008.717.044 1.078.026 1.424-.07 2.798-1.048 3.536-2.163.42-.634.527-1.328.42-2.056"
+                                                                                                fill="#D6D6D6"
+                                                                                                mask="url(#d)"></path>
+                                                                                        </g>
+                                                                                        <path
+                                                                                            d="M15.489 7.105c.338.376.68.75.968 1.155a4.59 4.59 0 0 1 .244.388l.007.016a2.713 2.713 0 0 1 .156.463v.01c.01.101.833 1.66 1.136 1.863 1.5 1 1.5.483 1.5 1 0 1-1.5 1.5-.55 3.568s.918-.323 1.074-.739l.024-.059a.87.87 0 0 1 .023-.041c.026-.043.113-.15.144-.19.043-.04.088-.08.134-.118.041-.034.085-.067.13-.1.011-.009.02-.016.03-.022.394-.245.833-.436 1.253-.647.492-.248.986-.536 1.361-.905.518-.511.743-1.095.846-1.751a2.608 2.608 0 0 0-.323-1.709c-.37-.652-1.171-.837-1.93-.972a3.596 3.596 0 0 1-.239-.053l-.073-.039-.04-.032a1.162 1.162 0 0 1-.061-.053.6.6 0 0 1-.019-.023c-.032-.042-.06-.086-.088-.13a2.675 2.675 0 0 0-.015-.023c-.172-.394-.22-.823-.31-1.234-.107-.498-.296-1.007-.643-1.425-.263-.317-.543-.539-.908-.77-.302-.192-.712-.288-1.076-.364-.114-.024-.229-.046-.343-.072C17.865 3.817 16 3.5 15.5 4.5c-.5 1-.771 1.759-.011 2.605zM21.873 24.96h.01l.012.005c.155.047.31.047.464 0a.9.9 0 0 0 .522-.45c.118-.226.15-.502.088-.755l-.088-.234a.938.938 0 0 0-.313-.351c-.096-.05-.205-.116-.315-.134-.134-.021-.25-.041-.38-.041-.476 0-.873.446-.873.98s.397.979.873.98M17 22c.545 0 1-.455 1-1 0-.545-.455-1-1-1-.545 0-1 .455-1 1 0 .545.455 1 1 1M24 7c.545 0 1-.455 1-1 0-.545-.455-1-1-1-.545 0-1 .455-1 1 0 .545.455 1 1 1"
+                                                                                            fill="#D6D6D6"></path>
+                                                                                    </g>
+                                                                                </g>
+                                                                            </g>
+                                                                        </svg><!-- react-text: 6953 -->8:11 pm
+                                                                        <!-- /react-text -->
+                                                                    </div>
+                                                                </div>
+                                                                <div class="set">
+                                                                    <div class="label">Set</div>
+                                                                    <div class="sun">6:18 pm</div>
+                                                                    <div class="moon">
+                                                                        <!-- react-text: 6958 -->7:47 am
+                                                                        <!-- /react-text --><svg viewBox="0 0 39 39"
+                                                                            xmlns="http://www.w3.org/2000/svg"
+                                                                            xmlns:xlink="http://www.w3.org/1999/xlink"
+                                                                            height="11" width="11">
+                                                                            <defs>
+                                                                                <path id="a" d="M0 .042h7.96v9.917H0z">
+                                                                                </path>
+                                                                                <path id="c" d="M0 .042h7.96v9.917H0z">
+                                                                                </path>
+                                                                            </defs>
+                                                                            <g fill="none" fill-rule="evenodd">
+                                                                                <circle stroke="#FFF" stroke-width="5"
+                                                                                    fill="#FFF"
+                                                                                    transform="matrix(1 0 0 -1 0 39)"
+                                                                                    cx="19.5" cy="19.5" r="17"></circle>
+                                                                                <g transform="translate(5 5)">
+                                                                                    <circle fill="#DBDDDD"
+                                                                                        transform="matrix(1 0 0 -1 0 29)"
+                                                                                        cx="14.5" cy="14.5" r="14.5">
+                                                                                    </circle>
+                                                                                    <g transform="translate(1 6)">
+                                                                                        <mask id="b" fill="#fff">
+                                                                                            <use xlink:href="#a"></use>
+                                                                                        </mask>
+                                                                                        <path
+                                                                                            d="M7.922 3.941c-.104-.701-.635-1.292-1.233-1.676.024-.058.045-.117.06-.177.11-.434.022-.906-.175-1.303-.23-.467-.738-.693-1.253-.738-.465-.04-1.008.176-1.378.429-.479.328-.85.719-1.207 1.161a3.997 3.997 0 0 0-.64 1.138c-.028.072-.054.144-.08.217l-.02.053c-.505.224-.795.764-.642 1.292.032.11.083.213.148.306A4.612 4.612 0 0 0 .298 6.765C.12 7.447.075 8.161.004 8.86c-.05.48.39.941.854 1.062.584.152 1.299-.182 1.431-.77a7.25 7.25 0 0 1 .187-.712l.015-.04c.013-.028.03-.065.043-.089l.024-.037c.02-.024.052-.063.08-.093l.009-.005a.376.376 0 0 1 .037-.018l.1-.022c.034-.002.07-.002.104-.003.36-.008.717.044 1.078.026 1.424-.07 2.798-1.048 3.536-2.163.42-.634.527-1.328.42-2.056"
+                                                                                            fill="#D6D6D6"
+                                                                                            mask="url(#b)"></path>
+                                                                                    </g>
+                                                                                    <path
+                                                                                        d="M13.511 20.895c-.338-.376-.68-.75-.968-1.155a4.59 4.59 0 0 1-.244-.388l-.007-.016a2.713 2.713 0 0 1-.156-.463v-.01c-.01-.101-.833-1.66-1.136-1.863-1.5-1-1.5-.483-1.5-1 0-1 1.5-1.5.55-3.568s-.918.323-1.074.739l-.024.059a.87.87 0 0 1-.023.041c-.026.043-.113.15-.144.19-.043.04-.088.08-.134.118-.041.034-.085.067-.13.1-.011.009-.02.016-.03.022-.394.245-.833.436-1.253.647-.492.248-.986.536-1.361.905-.518.511-.743 1.095-.846 1.751-.092.588.02 1.175.323 1.709.37.652 1.171.837 1.93.972a3.596 3.596 0 0 1 .239.053l.073.039.04.032.061.053a.6.6 0 0 1 .019.023c.032.042.06.086.088.13l.015.023c.172.394.22.823.31 1.234.107.498.296 1.007.643 1.425.263.317.543.539.908.77.302.192.712.288 1.076.364.114.024.229.046.343.072.036.28 1.901.597 2.401-.403.5-1 .771-1.759.011-2.605zM7.127 3.04h-.01l-.012-.005a.787.787 0 0 0-.464 0 .9.9 0 0 0-.522.45c-.118.226-.15.502-.088.755l.088.234a.938.938 0 0 0 .313.351c.096.05.205.116.315.134.134.021.25.041.38.041C7.603 5 8 4.554 8 4.02s-.397-.979-.873-.98M12 6c-.545 0-1 .455-1 1 0 .545.455 1 1 1 .545 0 1-.455 1-1 0-.545-.455-1-1-1M5 21c-.545 0-1 .455-1 1 0 .545.455 1 1 1 .545 0 1-.455 1-1 0-.545-.455-1-1-1"
+                                                                                        fill="#D6D6D6"></path>
+                                                                                    <g>
+                                                                                        <g
+                                                                                            transform="rotate(180 14 11)">
+                                                                                            <mask id="d" fill="#fff">
+                                                                                                <use xlink:href="#c">
+                                                                                                </use>
+                                                                                            </mask>
+                                                                                            <path
+                                                                                                d="M7.922 3.941c-.104-.701-.635-1.292-1.233-1.676.024-.058.045-.117.06-.177.11-.434.022-.906-.175-1.303-.23-.467-.738-.693-1.253-.738-.465-.04-1.008.176-1.378.429-.479.328-.85.719-1.207 1.161a3.997 3.997 0 0 0-.64 1.138c-.028.072-.054.144-.08.217l-.02.053c-.505.224-.795.764-.642 1.292.032.11.083.213.148.306A4.612 4.612 0 0 0 .298 6.765C.12 7.447.075 8.161.004 8.86c-.05.48.39.941.854 1.062.584.152 1.299-.182 1.431-.77a7.25 7.25 0 0 1 .187-.712l.015-.04c.013-.028.03-.065.043-.089l.024-.037c.02-.024.052-.063.08-.093l.009-.005a.376.376 0 0 1 .037-.018l.1-.022c.034-.002.07-.002.104-.003.36-.008.717.044 1.078.026 1.424-.07 2.798-1.048 3.536-2.163.42-.634.527-1.328.42-2.056"
+                                                                                                fill="#D6D6D6"
+                                                                                                mask="url(#d)"></path>
+                                                                                        </g>
+                                                                                        <path
+                                                                                            d="M15.489 7.105c.338.376.68.75.968 1.155a4.59 4.59 0 0 1 .244.388l.007.016a2.713 2.713 0 0 1 .156.463v.01c.01.101.833 1.66 1.136 1.863 1.5 1 1.5.483 1.5 1 0 1-1.5 1.5-.55 3.568s.918-.323 1.074-.739l.024-.059a.87.87 0 0 1 .023-.041c.026-.043.113-.15.144-.19.043-.04.088-.08.134-.118.041-.034.085-.067.13-.1.011-.009.02-.016.03-.022.394-.245.833-.436 1.253-.647.492-.248.986-.536 1.361-.905.518-.511.743-1.095.846-1.751a2.608 2.608 0 0 0-.323-1.709c-.37-.652-1.171-.837-1.93-.972a3.596 3.596 0 0 1-.239-.053l-.073-.039-.04-.032a1.162 1.162 0 0 1-.061-.053.6.6 0 0 1-.019-.023c-.032-.042-.06-.086-.088-.13a2.675 2.675 0 0 0-.015-.023c-.172-.394-.22-.823-.31-1.234-.107-.498-.296-1.007-.643-1.425-.263-.317-.543-.539-.908-.77-.302-.192-.712-.288-1.076-.364-.114-.024-.229-.046-.343-.072C17.865 3.817 16 3.5 15.5 4.5c-.5 1-.771 1.759-.011 2.605zM21.873 24.96h.01l.012.005c.155.047.31.047.464 0a.9.9 0 0 0 .522-.45c.118-.226.15-.502.088-.755l-.088-.234a.938.938 0 0 0-.313-.351c-.096-.05-.205-.116-.315-.134-.134-.021-.25-.041-.38-.041-.476 0-.873.446-.873.98s.397.979.873.98M17 22c.545 0 1-.455 1-1 0-.545-.455-1-1-1-.545 0-1 .455-1 1 0 .545.455 1 1 1M24 7c.545 0 1-.455 1-1 0-.545-.455-1-1-1-.545 0-1 .455-1 1 0 .545.455 1 1 1"
+                                                                                            fill="#D6D6D6"></path>
+                                                                                    </g>
+                                                                                </g>
+                                                                            </g>
+                                                                        </svg></div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="center moon" style="height: 190px;">
+                                                                <div class="label">Moon</div>
+                                                                <div>
+                                                                    <!-- react-text: 6981 -->96
+                                                                    <!-- /react-text -->
+                                                                    <!-- react-text: 6982 -->%
+                                                                    <!-- /react-text -->
+                                                                </div>
+                                                                <div>Waning</div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="buttons-wrap component-min-max-btns">
+                                                        <div class="buttons-rounded"><a tabindex="-1" class="exp"
+                                                                title="expand widget"></a><a tabindex="-1"
+                                                                title="Jump to graph" class="graph"></a><span
+                                                                class="component-share"><a class="share"></a></span><a
+                                                                tabindex="-1" class="minus" title="Hide widget"></a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="device-widget square stats hidden">
+                                                    <header><input type="text" disabled="" value="Dev stats"
+                                                            class="editable-title type-stats"></header>
+                                                    <div class="wrap"><a href="/">Map</a><!-- react-text: 6739 -->Last
+                                                        updated:
+                                                        <!-- /react-text -->
+                                                        <!-- react-text: 6740 -->Mon Mar 01 2021 12:52:00 GMT+0200
+                                                        (Eastern European Standard Time)
+                                                        <!-- /react-text -->
+                                                        <!-- react-text: 6741 -->
+                                                        <!-- /react-text --><br><a tabindex="-1">show mock data</a>
+                                                        <!-- react-text: 6744 -->
+                                                        <!-- /react-text -->
+                                                    </div>
+                                                    <div class="buttons-wrap component-min-max-btns">
+                                                        <div class="buttons-rounded"><a tabindex="-1" class="exp"
+                                                                title="expand widget"></a><a tabindex="-1"
+                                                                title="Jump to graph" class="graph"></a><a tabindex="-1"
+                                                                class="minus" title="Hide widget"></a></div>
+                                                    </div>
+                                                </div>
+                                                <div class="device-widget square view" style="height: 260px;">
+                                                    <header><input type="text" disabled="" value="Quick View"
+                                                            class="editable-title type-view"></header>
+                                                    <div class="device-quick-view-widget small-flex-lines">
+                                                        <div class="wrap">
+                                                            <div class="group"><input type="text" disabled=""
+                                                                    value="Outdoor" class="editable-title type-temp">
+                                                                <div class="line">
+                                                                    <div class="label">Temperature</div><span
+                                                                        class="device-formatted-data-point fdp tempf ">
+                                                                        <!-- react-text: 6760 -->
+                                                                        <!-- /react-text --><span
+                                                                            class="fdp-val">81.1</span><span
+                                                                            class="suff">°F</span>
+                                                                        <!-- react-text: 6763 -->
+                                                                        <!-- /react-text --></span>
+                                                                </div>
+                                                                <div class="line">
+                                                                    <div class="label">Dew Point</div><span
+                                                                        class="device-formatted-data-point fdp dewPoint ">
+                                                                        <!-- react-text: 6767 -->
+                                                                        <!-- /react-text --><span
+                                                                            class="fdp-val">19.4</span><span
+                                                                            class="suff">°</span>
+                                                                        <!-- react-text: 6770 -->
+                                                                        <!-- /react-text --></span>
+                                                                </div>
+                                                                <div class="line yesterday">
+                                                                    <div class="label"></div>
+                                                                    <div class="device-from-yesterday">
+                                                                        <div class="from ">
+                                                                            <div class="label">From Yesterday</div><span
+                                                                                class="device-formatted-data-point fdp tempf ">
+                                                                                <!-- react-text: 6777 -->
+                                                                                <!-- /react-text --><span
+                                                                                    class="fdp-val">+2.7</span><span
+                                                                                    class="suff">°F</span>
+                                                                                <!-- react-text: 6780 -->
+                                                                                <!-- /react-text --></span>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="line">
+                                                                    <div class="label">Feels Like</div><span
+                                                                        class="device-formatted-data-point fdp feelsLike ">
+                                                                        <!-- react-text: 6784 -->
+                                                                        <!-- /react-text --><span
+                                                                            class="fdp-val">78.6</span><span
+                                                                            class="suff">°</span>
+                                                                        <!-- react-text: 6787 -->
+                                                                        <!-- /react-text --></span>
+                                                                </div>
+                                                            </div>
+                                                            <div class="group"><input type="text" disabled=""
+                                                                    value="Wind" class="editable-title type-wind">
+                                                                <div class="line">
+                                                                    <div class="label"> Speed</div><span
+                                                                        class="device-formatted-data-point fdp windspeedmph ">
+                                                                        <!-- react-text: 6793 -->
+                                                                        <!-- /react-text --><span
+                                                                            class="fdp-val">0.7</span><span
+                                                                            class="suff"> mph</span>
+                                                                        <!-- react-text: 6796 -->
+                                                                        <!-- /react-text --></span>
+                                                                </div>
+                                                                <div class="line">
+                                                                    <div class="label"> Gust</div><span
+                                                                        class="device-formatted-data-point fdp windgustmph ">
+                                                                        <!-- react-text: 6800 -->
+                                                                        <!-- /react-text --><span
+                                                                            class="fdp-val">1.1</span><span
+                                                                            class="suff"> mph</span>
+                                                                        <!-- react-text: 6803 -->
+                                                                        <!-- /react-text --></span>
+                                                                </div>
+                                                                <div class="line">
+                                                                    <div class="label">Max Daily Gust</div><span
+                                                                        class="device-formatted-data-point fdp maxdailygust ">
+                                                                        <!-- react-text: 6807 -->
+                                                                        <!-- /react-text --><span
+                                                                            class="fdp-val">11.4</span><span
+                                                                            class="suff"> mph</span>
+                                                                        <!-- react-text: 6810 -->
+                                                                        <!-- /react-text --></span>
+                                                                </div>
+                                                                <div class="line">
+                                                                    <div class="label"> Direction</div><span
+                                                                        class="device-formatted-data-point fdp winddir ">
+                                                                        <!-- react-text: 6814 -->
+                                                                        <!-- /react-text --><span
+                                                                            class="fdp-val">231</span><span
+                                                                            class="suff">°</span>
+                                                                        <!-- react-text: 6817 -->
+                                                                        <!-- /react-text --></span>
+                                                                </div>
+                                                            </div>
+                                                            <div class="group"><input type="text" disabled=""
+                                                                    value="Rainfall" class="editable-title type-rain">
+                                                                <div class="line">
+                                                                    <div class="label">Rate</div><span
+                                                                        class="device-formatted-data-point fdp hourlyrainin ">
+                                                                        <!-- react-text: 6823 -->
+                                                                        <!-- /react-text --><span
+                                                                            class="fdp-val">0.00</span><span
+                                                                            class="suff"> in/hr</span>
+                                                                        <!-- react-text: 6826 -->
+                                                                        <!-- /react-text --></span>
+                                                                </div>
+                                                                <div class="line">
+                                                                    <div class="label">Daily </div><span
+                                                                        class="device-formatted-data-point fdp dailyrainin ">
+                                                                        <!-- react-text: 6830 -->
+                                                                        <!-- /react-text --><span
+                                                                            class="fdp-val">0.00</span><span
+                                                                            class="suff"> in</span>
+                                                                        <!-- react-text: 6833 -->
+                                                                        <!-- /react-text --></span>
+                                                                </div>
+                                                                <div class="line">
+                                                                    <div class="label">Weekly </div><span
+                                                                        class="device-formatted-data-point fdp weeklyrainin ">
+                                                                        <!-- react-text: 6837 -->
+                                                                        <!-- /react-text --><span
+                                                                            class="fdp-val">0.00</span><span
+                                                                            class="suff"> in</span>
+                                                                        <!-- react-text: 6840 -->
+                                                                        <!-- /react-text --></span>
+                                                                </div>
+                                                            </div>
+                                                            <div class="group"><input type="text" disabled=""
+                                                                    value="Pressure"
+                                                                    class="editable-title type-pressure">
+                                                                <div class="line">
+                                                                    <div class="label">Relative </div><span
+                                                                        class="device-formatted-data-point fdp baromrelin ">
+                                                                        <!-- react-text: 6846 -->
+                                                                        <!-- /react-text --><span
+                                                                            class="fdp-val">29.83</span><span
+                                                                            class="suff"> inHg</span>
+                                                                        <!-- react-text: 6849 -->
+                                                                        <!-- /react-text --></span>
+                                                                </div>
+                                                                <div class="line">
+                                                                    <div class="label">Rate</div><span
+                                                                        class="device-formatted-data-point fdp baromrelin ">
+                                                                        <!-- react-text: 6853 -->
+                                                                        <!-- /react-text --><span
+                                                                            class="fdp-val">-0.05</span><span
+                                                                            class="suff"> inHg</span><span
+                                                                            class="after">/hr</span></span>
+                                                                </div>
+                                                            </div>
+                                                            <div class="group"><input type="text" disabled=""
+                                                                    value="Humidity"
+                                                                    class="editable-title type-humidity">
+                                                                <div class="line">
+                                                                    <div class="label">Humidity</div><span
+                                                                        class="device-formatted-data-point fdp humidity ">
+                                                                        <!-- react-text: 6862 -->
+                                                                        <!-- /react-text --><span
+                                                                            class="fdp-val">10</span><span
+                                                                            class="suff">%</span>
+                                                                        <!-- react-text: 6865 -->
+                                                                        <!-- /react-text --></span>
+                                                                </div>
+                                                                <div class="line yesterday">
+                                                                    <div class="label"></div>
+                                                                    <div class="device-from-yesterday">
+                                                                        <div class="from zero">
+                                                                            <div class="label">From Yesterday</div><span
+                                                                                class="device-formatted-data-point fdp humidity ">
+                                                                                <!-- react-text: 6872 -->
+                                                                                <!-- /react-text --><span
+                                                                                    class="fdp-val">+0</span><span
+                                                                                    class="suff">%</span>
+                                                                                <!-- react-text: 6875 -->
+                                                                                <!-- /react-text --></span>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="hidden"></div>
+                                                            <div class="group">
+                                                                <h5>Solar</h5>
+                                                                <div class="line"><input type="text" disabled=""
+                                                                        value="UV Index"
+                                                                        class="editable-title type-uv"><span
+                                                                        class="device-formatted-data-point fdp uv ">
+                                                                        <!-- react-text: 6882 -->
+                                                                        <!-- /react-text --><span
+                                                                            class="fdp-val">5</span>
+                                                                        <!-- react-text: 6884 -->
+                                                                        <!-- /react-text -->
+                                                                        <!-- react-text: 6885 -->
+                                                                        <!-- /react-text --></span></div>
+                                                                <div class="line"><input type="text" disabled=""
+                                                                        value="Solar Radiation"
+                                                                        class="editable-title type-solar"><span
+                                                                        class="device-formatted-data-point fdp solarradiation ">
+                                                                        <!-- react-text: 6889 -->
+                                                                        <!-- /react-text --><span
+                                                                            class="fdp-val">568.3</span><span
+                                                                            class="suff"><span>
+                                                                                <!-- react-text: 6893 -->W/m
+                                                                                <!-- /react-text --><sup>2</sup></span></span>
+                                                                        <!-- react-text: 6895 -->
+                                                                        <!-- /react-text --></span></div>
+                                                            </div>
+                                                            <div class="hidden"></div>
+                                                            <div class="hidden"></div>
+                                                            <div class="hidden"></div>
+                                                            <div class="hidden"></div>
+                                                            <div class="hidden"></div>
+                                                            <div class="hidden"></div>
+                                                            <div class="hidden"></div>
+                                                            <div class="hidden"></div>
+                                                            <div class="hidden"></div>
+                                                            <div class="hidden"></div>
+                                                            <div class="hidden"></div>
+                                                            <div class="hidden"></div>
+                                                            <div class="hidden"></div>
+                                                            <div class="hidden"></div>
+                                                            <div class="hidden"></div>
+                                                            <div class="hidden"></div>
+                                                            <div class="hidden"></div>
+                                                            <div class="hidden"></div>
+                                                            <div class="hidden"></div>
+                                                            <div class="hidden"></div>
+                                                            <div class="hidden"></div>
+                                                            <div class="hidden"></div>
+                                                            <div class="hidden"></div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="buttons-wrap component-min-max-btns">
+                                                        <div class="buttons-rounded"><a tabindex="-1" class="exp"
+                                                                title="expand widget"></a><a tabindex="-1"
+                                                                title="Jump to graph" class="graph"></a><a tabindex="-1"
+                                                                class="pin glyphicon glyphicon-pushpin"></a><a
+                                                                tabindex="-1" class="minus" title="Hide widget"></a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div><!-- react-empty: 63 -->
+                <footer id="footer_main">
+                    <div class="dashboard">
+                        <!-- react-text: 66 -->© Copyright
+                        <!-- /react-text --><span class="sitename"></span><!-- react-text: 68 -->, LLC,
+                        <!-- /react-text -->
+                        <!-- react-text: 69 -->2021
+                        <!-- /react-text -->
+                        <!-- react-text: 70 -->. All rights reserved. &nbsp; &nbsp;
+                        <!-- /react-text --><span class="br"></span><a
+                            href="https://help.ambientweather.net/product/ambientweather-net" rel="noopener"
+                            target="_blank">Need Help?</a><span class="sep">|</span><!-- react-text: 74 -->Join our
+                        &nbsp;
+                        <!-- /react-text --><a class="" href="https://help.ambientweather.net/help/community"
+                            rel="noopener" target="_blank">Community</a></div>
+                    <div class="powered">
+                        <!-- react-text: 77 -->Powered by
+                        <!-- /react-text --><a target="_blank" rel="noopener" href="https://ambientweather.net">Ambient
+                            Weather</a></div>
+                </footer><!-- react-empty: 79 -->
+            </div>
+        </div>
+        <script>
+            (function (i, s, o, g, r, a, m) {
+                i['GoogleAnalyticsObject'] = r;
+                i[r] = i[r] || function () {
+                    (i[r].q = i[r].q || []).push(arguments)
+                }, i[r].l = 1 * new Date();
+                a = s.createElement(o),
+                    m = s.getElementsByTagName(o)[0];
+                a.async = 1;
+                a.src = g;
+                m.parentNode.insertBefore(a, m)
+            })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+
+            ga('create', 'UA-94079151-1', 'auto');
+            ga('send', 'pageview');
+        </script>
+        <noscript>Sorry, Javascript must be enabled to use the Ambient Weather Dashboard.</noscript>
+
+
+        <style type="text/css">
+            .mapboxgl-marker {
+                line-height: 0;
+            }
+        </style><span id="recharts_measurement_span"
+            style="position: absolute; top: -20000px; left: 0px; padding: 0px; margin: 0px; border: none; white-space: pre;">0.00</span>
+    </body>
+</body>
+
+</html>
